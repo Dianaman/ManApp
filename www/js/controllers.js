@@ -3,18 +3,14 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+  $scope.mensajes = [];
+
+  var variableFirebase = new Firebase('https://manappchat.firebaseio.com/public/');
+  variableFirebase.on('child_added', function(snapshot){
+    var message = snapshot.val();
+    $scope.mensajes.push(message);
+  });
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -25,4 +21,14 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('NewMessageCtrl', function($scope) {
+  $scope.message = {};
+  $scope.message.user = "Diana";
+  var variableFirebase = new Firebase('https://manappchat.firebaseio.com/public/');
+
+  $scope.postMessage = function (user, message) {
+      variableFirebase.push({usuario:user, mensaje:message});
+  }
 });

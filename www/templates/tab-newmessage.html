@@ -1,0 +1,13 @@
+<ion-view view-title="New Message">
+  <ion-content>
+  	<div class="bar bar-subheader">
+  		<h2 class="title" ng-model="message.user">Diana</h2>
+  	</div>
+  	<label class="item item-input">
+  		<textarea placeholder="Escribe aquí tu mensaje" ng-model="message.content"></textarea>
+  	</label>
+  	<button class="button button-royal" ng-click="postMessage(message.user, message.content)">
+  		Enviar
+	</button>
+  </ion-content>
+</ion-view>
