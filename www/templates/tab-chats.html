@@ -1,17 +1,18 @@
 <ion-view view-title="Chats">
   <ion-content>
-    <div class="list card" ng-repeat="mensaje in mensajes">
-      <strong>{{mensaje.usuario}}:</strong> {{mensaje.mensaje}}
-    </div>
-
-<div id="btn-newmessage">
-	<h3 class="title" ng-model="newMessage.user"></h3>
-	<label class="item item-input">
-		<textarea placeholder="Escribe aquí tu mensaje" ng-model="newMessage.content"></textarea>
-	</label>
-  	<button class="button button-block button-positive" ng-click="postMessage(newMessage.user, newMessage.content)">
-  		Enviar
-	</button>
+  	<ul class="list container-full">
+	    <li class="item" ng-repeat="mensaje in mensajes">
+	      <strong>{{mensaje.usuario}}:</strong> {{mensaje.mensaje}}
+	    </li>
+	</ul>
+	<div id="newmessage">
+		<h3 class="title" ng-model="newMessage.user"></h3>
+		<label class="item item-input">
+			<textarea placeholder="Escribe aquí tu mensaje" ng-model="newMessage.content"></textarea>
+		</label>
+	  	<button class="button button-block button-positive" ng-click="postMessage(newMessage.user, newMessage.content)">
+	  		Enviar
+		</button>
 	</div>
   </ion-content>
 </ion-view>

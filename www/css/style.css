@@ -1,6 +1,15 @@
 /* Empty. Add your own CSS if you like */
-#btn-newmessage{
-	bottom:5px;
+#newmessage{
+	bottom:5vh;
 	position:fixed;
 	width:100%;
+	height:20vh;
+}
+.container-full{
+	height:70vh;
+	width:100vw;
+}
+.container-full li{
+	height:7vh;
+	padding:5px;
 }
