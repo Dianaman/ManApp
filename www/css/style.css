@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+#btn-newmessage{
+	bottom:5px;
+	position:fixed;
+	width:100%;
+}

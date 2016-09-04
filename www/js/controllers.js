@@ -2,22 +2,36 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope, Chats, $timeout) {
 
   $scope.mensajes = [];
 
   var variableFirebase = new Firebase('https://manappchat.firebaseio.com/public/');
-  variableFirebase.on('child_added', function(snapshot){
-    var message = snapshot.val();
-    $scope.mensajes.push(message);
+  variableFirebase.limitToLast(8).on('child_added', function(snapshot){
+    $timeout(function(){
+      var message = snapshot.val();
+      $scope.mensajes.push(message);
+    });
   });
+
+  $scope.newMessage = {};
+  $scope.newMessage.user = "Diana";
+
+  $scope.postMessage = function (user, mensaje) {
+      variableFirebase.push({usuario:user, mensaje:mensaje});
+      $scope.newMessage.content = "";
+      
+      if($scope.mensajes.length == 8){
+        $scope.mensajes.splice(0, 1);
+      }
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AuthorCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };

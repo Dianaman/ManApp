@@ -69,22 +69,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.author', {
+    url: '/author',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  })
-
-  .state('tab.newmessage', {
-    url: '/newmessage',
-    views: {
-      'tab-newmessage': {
-        templateUrl: 'templates/tab-newmessage.html',
-        controller: 'NewMessageCtrl'
+      'tab-author': {
+        templateUrl: 'templates/tab-author.html',
+        controller: 'AuthorCtrl'
       }
     }
   });
